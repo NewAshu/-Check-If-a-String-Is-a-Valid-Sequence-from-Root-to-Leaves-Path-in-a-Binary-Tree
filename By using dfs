@@ -1,0 +1,19 @@
+class Solution {
+public:
+    
+    bool check(TreeNode *root, vector<int>&arr, int pos, int n){
+        if(root == NULL || pos == n || arr[pos] != root->val)
+              return 0;
+        else if(root->left == NULL && root->right == NULL && pos == n-1)
+             return 1;
+        return (check(root->left, arr, pos+1, n) ||check(root->right, arr, pos+1, n));
+  }
+    
+    bool isValidSequence(TreeNode* root, vector<int>& arr) {
+        int pos =0;
+        int n= arr.size();
+        if(check(root, arr, pos, n))
+          return 1;
+       return 0;
+    }
+};
