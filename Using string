@@ -1,0 +1,33 @@
+//first method
+//BY the use of String
+class Solution {
+public:
+    
+    bool check(TreeNode *root, string str, string s, int pos, int n){
+        if(root == NULL)
+           s.pop_back();
+        if(root != NULL)
+           s+=root->val;
+        if(root == NULL || pos == n)
+           return 0;
+        if(s == str && root->left == NULL && root->right == NULL)
+          return 1;
+          
+        return (check(root->left, str, s, pos, n) || check(root->right, str, s, pos, n));
+ }
+    
+    bool isValidSequence(TreeNode* root, vector<int>& arr) {
+        string s= "";
+        string str = "";
+        if(root == NULL)
+          return 0;
+        
+        int pos=0;
+        int n=arr.size();
+        for(int i=0; i<arr.size(); i++)
+            str+=arr[i];
+        if(check(root, str, s, pos, n))
+          return 1;
+        return 0;
+    }
+};
